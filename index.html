@@ -1,84 +1,555 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Currículum Vitae</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="bootstrap.min.css" rel="stylesheet" />
+  <title>Miguel Ángel Báez - Currículum Vitae</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --color-primary: #0066cc;
+      --color-secondary: #00a8ff;
+      --color-accent: #ff6b6b;
+      --color-dark: #2d3748;
+      --color-light: #f7fafc;
+      --color-muted: #718096;
+      --color-white: #ffffff;
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+      --shadow-soft: 0 10px 40px rgba(0,0,0,0.1);
+      --shadow-medium: 0 20px 60px rgba(0,0,0,0.15);
+      --border-radius: 1rem;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--color-dark);
+      background: url('background.jpg') top left repeat;
+      #background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Main container */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
+
+    /* Header section */
+    .header-section {
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .profile-card {
+      background: var(--gradient-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-medium);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255,255,255,0.3);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+      border-color: var(--color-secondary);
+    }
+
+    .profile-info h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-info .email {
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .profile-summary {
+      background: rgba(255,255,255,0.6);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--color-secondary);
+      margin-top: 2rem;
+    }
+
+    .profile-summary h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Content sections */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section-card {
+      background: var(--gradient-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-secondary), transparent);
+    }
+
+    /* Lists styling */
+    .custom-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list-item {
+      background: rgba(255,255,255,0.4);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.5rem;
+      border-left: 3px solid var(--color-secondary);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .list-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,168,255,0.1), transparent);
+      transition: var(--transition);
+    }
+
+    .list-item:hover {
+      transform: translateX(5px);
+      background: rgba(255,255,255,0.6);
+    }
+
+    .list-item:hover::before {
+      width: 100%;
+    }
+
+    /* Carousel styling */
+    .carousel-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .carousel-card {
+      background: var(--gradient-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .carousel-item img:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: var(--transition);
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-info h1 {
+        font-size: 2rem;
+      }
+
+      .content-section {
+        padding: 1rem;
+      }
+
+      .section-card {
+        padding: 1.5rem;
+      }
+
+      .carousel-item img {
+        height: 250px;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Skills tags */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-  <!-- Hero con fondo completo -->
-  <div class="hero">
-    <div id="cv">
-      <img id="foto" src="foto.jpg" alt="Foto de perfil de Miguel Ángel">
-      <h1 id="nombre"></h1>
-      <p id="email"></p>
-      <section>
-        <h2>Resumen profesional</h2>
-        <p id="resumen"></p>
-      </section>
-      <section>
-        <h2>Educación</h2>
-        <ul id="educacion"></ul>
-      </section>
-      <section>
-        <h2>Experiencia</h2>
-        <ul id="experiencia"></ul>
-      </section>
-    </div>
-  </div>
+  <!-- Background particles -->
+  <div class="bg-particles" id="particles"></div>
 
-  <div class="mx-auto mt-4" class="hero" style="max-width: 960px;">
-    <div id="miCarousel" class="carousel slide"
-         data-bs-ride="carousel"
-         data-bs-interval="3000">
-
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/slide1.jpg"
-               class="d-block w-100"
-               alt="Imagen 1">
-        </div>
-        <div class="carousel-item">
-          <img src="img/slide2.jpg"
-               class="d-block w-100"
-               alt="Imagen 2">
-        </div>
-        <div class="carousel-item">
-          <img src="img/slide3.jpg"
-               class="d-block w-100"
-               alt="Imagen 3">
-        </div>
-        <div class="carousel-item">
-          <img src="img/slide4.jpg"
-               class="d-block w-100"
-               alt="Imagen 4">
+  <div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="container">
+        <div class="profile-card loading">
+          <div class="profile-header">
+            <img src="foto2.jpg" alt="Miguel Ángel Báez" class="profile-image" id="foto">
+            <div class="profile-info">
+              <h1 id="nombre"></h1>
+              <p class="email" id="email"></p>
+            </div>
+          </div>
+          <div class="profile-summary">
+            <h2><i class="fas fa-user-tie"></i> Resumen Profesional</h2>
+            <p id="resumen"></p>
+            <div class="skills-container">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">Android</span>
+              <span class="skill-tag">Redes</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">WordPress</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <button class="carousel-control-prev" type="button"
-              data-bs-target="#miCarousel"
-              data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"
-              aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next" type="button"
-              data-bs-target="#miCarousel"
-              data-bs-slide="next">
-        <span class="carousel-control-next-icon"
-              aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
+    <!-- Content Section -->
+    <div class="content-section">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-card loading">
+            <h2 class="section-title">
+              <i class="fas fa-graduation-cap"></i>
+              Educación
+            </h2>
+            <ul class="custom-list" id="educacion"></ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="section-card loading">
+            <h2 class="section-title">
+              <i class="fas fa-briefcase"></i>
+              Experiencia
+            </h2>
+            <ul class="custom-list" id="experiencia"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Carousel Section -->
+    <div class="carousel-container">
+      <div class="carousel-card loading">
+        <div id="miCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="Desarrollo de Software">
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="Trabajo en Equipo">
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="Innovación">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#miCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#miCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
-  <script src="bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Datos del currículum
+    const data = {
+      "nombre": "Miguel Ángel Báez Domínguez",
+      "email": "elgladiadordelcielo@gmail.com",
+      "resumen": "Programador, técnico de redes y técnico microinformático con amplia experiencia en desarrollo web, aplicaciones móviles y administración de sistemas.",
+      "educacion": [
+        "09/2008 - 09/2010 - Técnico Superior, de Desarrollo de Aplicaciones Informáticas (DAI).",  
+        "04/2025 - HOY - Técnico microinformático - CEDECO",
+        "09/2023 - 10/2023 - Inteligencia Artificial, Big Data, Java orientado a 5G, usos y características del 5G (150h)",
+        "05/2023 - Fundamentos de robótica (50h)",
+        "06/2022 - Machine Learning aplicado usando Python (150h)",
+        "09/2018 - 01/2020 - Certificado de Profesionalidad - Desarrollo de aplicaciones con tecnología web, nivel de cualificación 3",
+        "10/2019 - 10/2019 - Metodología/filosofía SCRUM en la academia ADAMs",
+        "04/2018 - 09/2018 - Programación WEB: HTML5+CSS3+Javascript+Jquery+Ajax+Bootstrap, y en entorno servidor PHP nativo y Symfony con PHP y Twig con copias de seguridad con GIT. CMS: Wordpress y Prestashop (590h).",
+        "06/2016 - 05/2017 - Desarrollo de aplicaciones Android (Clases particulares)",
+        "03/2018 - 04/2018 - Oracle, JAVA, Hibernate, Spring, Android, IOS, PHP y Python. PC CARRIER (300h)",
+        "05/2012 - 05/2012 - Redes de Área local intranet e Internet para el personal del SAS (60h)",
+        "01/2012 - 04/2012 - Diseñador WEB y multimedia con Photoshop, Animate, e Ilustrator, redes sociales y posicionamiento SEO, Instituto Andaluz de enseñanza (370h)"
+      ],
+      "experiencia": [
+        "09/2019 - 11/2023 - Negocio propio no relacionado con la informática",
+        "04/2019 - 05/2019 - Formador de funcionarios de juntas electorales en aplicaciones para elecciones 26M en la empresa I3E IT",
+        "09/2018 - 09/2018 - Prácticas de desarrollador WEB centrado en WordPress en www.doblerc.com",
+        "10/2011 - 11/2011 - Prácticas de Administrador de Redes en www.comalis.com",
+        "06/2010 - 07/2010 - Prácticas del Ciclo Superior en Alsima Consultores",
+        "10/2009 - 04/2010 - Programador JAVA en Equiposeo.com cursando mi último año del Ciclo DAI",
+        "10/2007 - 04/2009 - 19 meses Teleoperador-técnico dando soporte a clientes (niveles 1 y 2) e instaladores de las ADSL de Orange en la subcontrata SITEL.",
+        "07/1997 - 08/2006 - 9 años trabajando en JK INFORMÁTICA, en calidad de técnico y gerente-propietario. (Montaje de redes Microsoft/Reparación de PCs de sobremesa y portátiles/Diseño gráfico/Técnico-comercial/Trabajos administrativos)."
+      ]
+    };
 
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Cargar datos del currículum
+    function loadData() {
+      document.getElementById('nombre').textContent = data.nombre;
+      document.getElementById('email').textContent = data.email;
+      document.getElementById('resumen').textContent = data.resumen;
+
+      const expList = document.getElementById('experiencia');
+      data.experiencia.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'list-item';
+        li.textContent = item;
+        li.style.animationDelay = (index * 0.1) + 's';
+        expList.appendChild(li);
+      });
+
+      const eduList = document.getElementById('educacion');
+      data.educacion.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'list-item';
+        li.textContent = item;
+        li.style.animationDelay = (index * 0.1) + 's';
+        eduList.appendChild(li);
+      });
+    }
+
+    // Animación de aparición escalonada
+    function animateElements() {
+      const loadingElements = document.querySelectorAll('.loading');
+      loadingElements.forEach((element, index) => {
+        setTimeout(() => {
+          element.style.animationDelay = '0s';
+          element.classList.remove('loading');
+        }, index * 200);
+      });
+    }
+
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      loadData();
+      setTimeout(animateElements, 500);
+    });
+
+    // Efecto parallax suave en scroll
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach((particle, index) => {
+        const speed = (index % 3 + 1) * 0.5;
+        particle.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+  </script>
 </body>
 </html>
-

@@ -26,7 +26,7 @@
   position: relative;
   min-height: 100vh;
   /* Modo mosaico: se repite la imagen sin escalarla */
-  
+  background: url('background.jpg') top left repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +80,6 @@
 
 /* Tipografía y colores */
 body {
-  background: url('background.jpg') top left repeat;
   font-family: var(--font-base);
   color: var(--color-texto);
   line-height: 1.6;
