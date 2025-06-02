@@ -1,0 +1,175 @@
+/* style.css */
+
+/* 0) Variables y reset igual que antes */
+:root {
+  --color-fondo: rgba(255,255,255,0.85);
+  --color-primario: #004080;
+  --color-secundario: #0074b5;
+  --color-texto: #333;
+  --color-texto-claro: #555;
+  --font-base: 'Segoe UI', Tahoma, sans-serif;
+  --font-titulos: 'Merriweather', serif;
+  --espacio: 1.5rem;
+  --radio: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 1) Hero full-screen con fondo */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  /* Modo mosaico: se repite la imagen sin escalarla */
+  background: url('background.jpg') top left repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio);
+}
+
+/* El overlay semitransparente sigue igual */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+
+/* 2) CV como tarjeta sobre la hero */
+#cv {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  background: var(--color-fondo);
+  padding: calc(var(--espacio) * 1.5);
+  border-radius: var(--radio);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Resto de estilos heredados, con pequeñas mejoras */
+
+/* Foto más grande en desktop, centrada en móvil */
+#foto {
+  position: absolute;
+  top: var(--espacio);
+  right: var(--espacio);
+  width: 120px;        /* ancho fijo original */
+  height: auto;        /* mantiene proporción */
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+/* Ajuste móvil original */
+@media (max-width: 600px) {
+  #foto {
+    width: 80px;
+    top: calc(var(--espacio) / 2);
+    right: calc(var(--espacio) / 2);
+  }
+}
+
+/* Tipografía y colores */
+body {
+  font-family: var(--font-base);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+h1, h2 {
+  font-family: var(--font-titulos);
+  color: var(--color-primario);
+  margin-bottom: 0.5em;
+}
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--color-secundario);
+  padding-bottom: 0.2em;
+}
+p {
+  color: var(--color-texto-claro);
+  margin-bottom: 1em;
+}
+
+/* Secciones con fondo suave */
+section {
+  margin-top: var(--espacio);
+  padding: var(--espacio);
+  background: #fafbfd;
+  border-radius: var(--radio);
+}
+section:first-of-type {
+  margin-top: 0;
+}
+
+/* Listas personalizadas */
+ul {
+  list-style: none;
+}
+li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.75em;
+}
+li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-secundario);
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* Hover en el nombre */
+#nombre {
+  transition: color 0.3s;
+  cursor: default;
+}
+#nombre:hover {
+  color: var(--color-secundario);
+}
+
+/* Fija altura y recorte automático */
+#miCarousel .carousel-item img {
+height: 360px;
+object-fit: cover;
+}
+
+/* 3) Ajustes responsivos */
+@media (max-width: 800px) {
+  #foto {
+    width: 100px;
+    height: 100px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    padding: 1rem;
+  }
+  #cv {
+    padding: 1rem;
+  }
+  #foto {
+    position: static;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+}
