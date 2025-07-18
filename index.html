@@ -168,6 +168,44 @@
       gap: 0.5rem;
     }
 
+    /* GitHub Button */
+    .github-section {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(36, 41, 47, 0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .github-btn:hover {
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(36, 41, 47, 0.4);
+      background: linear-gradient(135deg, #2d3339 0%, #1f2328 100%);
+    }
+
+    .github-btn i {
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .github-btn:hover i {
+      transform: scale(1.1);
+    }
+
     /* Content sections */
     .content-section {
       max-width: 1200px;
@@ -375,7 +413,7 @@
       <div class="container">
         <div class="profile-card loading">
           <div class="profile-header">
-            <img src="foto2.jpg" alt="Miguel Ángel Báez" class="profile-image" id="foto">
+            <img src="foto.jpg" alt="Miguel Ángel Báez" class="profile-image" id="foto">
             <div class="profile-info">
               <h1 id="nombre"></h1>
               <p class="email" id="email"></p>
@@ -384,6 +422,12 @@
           <div class="profile-summary">
             <h2><i class="fas fa-user-tie"></i> Resumen Profesional</h2>
             <p id="resumen"></p>
+            <div class="github-section">
+              <a href="https://github.com/elgladiadordelcielo" target="_blank" class="github-btn">
+                <i class="fab fa-github"></i>
+                Ver mis proyectos en GitHub
+              </a>
+            </div>
             <div class="skills-container">
               <span class="skill-tag">JavaScript</span>
               <span class="skill-tag">Java</span>
@@ -460,7 +504,7 @@
       "resumen": "Programador, técnico de redes y técnico microinformático con amplia experiencia en desarrollo web, aplicaciones móviles y administración de sistemas.",
       "educacion": [
         "09/2008 - 09/2010 - Técnico Superior, de Desarrollo de Aplicaciones Informáticas (DAI).",  
-        "04/2025 - HOY - Técnico microinformático - CEDECO",
+        "04/2025 - HOY - Técnico en sistemas microinformáticos/Operador de sistemas/Técnico de soporte informático - CEDECO",
         "09/2023 - 10/2023 - Inteligencia Artificial, Big Data, Java orientado a 5G, usos y características del 5G (150h)",
         "05/2023 - Fundamentos de robótica (50h)",
         "06/2022 - Machine Learning aplicado usando Python (150h)",
