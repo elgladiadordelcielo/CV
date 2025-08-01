@@ -36,7 +36,6 @@
       line-height: 1.6;
       color: var(--color-dark);
       background: url('background.jpg') top left repeat;
-      #background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       background-attachment: fixed;
       min-height: 100vh;
       overflow-x: hidden;
@@ -296,6 +295,117 @@
       width: 100%;
     }
 
+    /* Hierarchical list styling for CEDECO course */
+    .mega-course {
+      background: rgba(255,255,255,0.5);
+      padding: 1.5rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .course-title {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .main-courses {
+      list-style: none;
+      padding: 0;
+      margin-left: 0;
+    }
+
+    .main-course-item {
+      background: rgba(255,255,255,0.7);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.5rem;
+      border-left: 3px solid var(--color-secondary);
+    }
+
+    .main-course-title {
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-courses {
+      list-style: none;
+      padding: 0;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .sub-course-item {
+      background: rgba(255,255,255,0.3);
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.25rem;
+      border-radius: 0.25rem;
+      border-left: 2px solid var(--color-accent);
+      font-size: 0.9rem;
+    }
+
+    /* Projects section */
+    .projects-section {
+      background: var(--gradient-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-item {
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .project-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 1rem;
+      object-fit: cover;
+      transition: var(--transition);
+      box-shadow: var(--shadow-soft);
+      border: 3px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+
+    .project-icon:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: var(--shadow-medium);
+      border-color: var(--color-secondary);
+    }
+
+    .project-links {
+      margin-top: 0.75rem;
+    }
+
+    .project-link {
+      display: block;
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      transition: var(--transition);
+    }
+
+    .project-link:hover {
+      color: var(--color-secondary);
+      transform: translateX(3px);
+    }
+
     /* Carousel styling */
     .carousel-container {
       max-width: 1000px;
@@ -343,42 +453,6 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .profile-header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .profile-info h1 {
-        font-size: 2rem;
-      }
-
-      .content-section {
-        padding: 1rem;
-      }
-
-      .section-card {
-        padding: 1.5rem;
-      }
-
-      .carousel-item img {
-        height: 250px;
-      }
-    }
-
-    /* Loading animation */
-    .loading {
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
     /* Skills tags */
     .skills-container {
       display: flex;
@@ -400,6 +474,70 @@
     .skill-tag:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Responsive design */
+    @media (max-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-info h1 {
+        font-size: 2rem;
+      }
+
+      .content-section {
+        padding: 1rem;
+      }
+
+      .section-card {
+        padding: 1.5rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .project-icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      .carousel-item img {
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -443,6 +581,69 @@
       </div>
     </div>
 
+    <!-- Projects Section -->
+    <div class="content-section">
+      <div class="projects-section loading">
+        <h2 class="section-title">
+          <i class="fas fa-rocket"></i>
+          Mis Proyectos
+        </h2>
+        
+        <div class="projects-grid">
+          <!-- Primera fila -->
+          <div class="project-item">
+            <img src="img/Icono-teleturismo.png" alt="Teleturismo" class="project-icon" onclick="window.open('https://turismoadistancia.es/', '_blank')">
+            <div class="project-links">              
+              <a href="https://drive.google.com/file/d/1NA1U69wnjqXPEFM4PeHyB73narAMPlKm/view?usp=sharing" target="_blank" class="project-link">Código PHP</a>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_amor_cosmico.png" alt="Amor Cósmico" class="project-icon" onclick="window.open('https://elgladiadordelcielo.github.io/amor_cosmico/', '_blank')">
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_tecnociencia_quiz.png" alt="Tecnociencia Quiz" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1NOK4EfblFjHrbhZ_j1hh6VvVVC_0noo4/view?usp=drive_link', '_blank')">
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_tres_en_raya.png" alt="Tres en Raya" class="project-icon" onclick="window.open('https://elgladiadordelcielo.github.io/tres_en_raya/', '_blank')">
+            <div class="project-links">
+              <a href="https://drive.google.com/file/d/1Fmf5MJ_4HA8wsn951MHF81WN1XkBlGJN/view?usp=sharing" target="_blank" class="project-link">Versión Android</a>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_localizador_de_ancianos.png" alt="Localizador de Ancianos" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1COyaRT93HFMMd5G7VITjqFmZflOmq5oU/view?usp=drive_link', '_blank')">
+          </div>
+
+          <!-- Segunda fila -->
+          <div class="project-item">
+            <img src="img/icono_apalabrotados.png" alt="Apalabrotados" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1z-tZgH5eWw1fQ8yefLYqPRSLPaTDzdob/view?usp=sharing', '_blank')">
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_calculadora_IA_VS_humana.png" alt="Calculadora IA vs Humana" class="project-icon" onclick="window.open('https://elgladiadordelcielo.github.io/calculadora/', '_blank')">
+            <div class="project-links">
+              <a href="https://drive.google.com/file/d/1YCp5Nr5RhtMC8DKBQa7ignFq8bjhZ_ER/view?usp=sharing " target="_blank" class="project-link">Versión Android</a>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_codificador.jpg" alt="Codificador" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1-oLX1SFgmLb2kNrdcGWgmfNNLBGiElEK/view?usp=sharing', '_blank')">
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_amando_a_vos_recitame_poesia_icono.png" alt="Amando a Vos" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1iXwuaM8TEiDqvGEV5gIv1YdrLR6dklUP/view?usp=sharing', '_blank')">
+          </div>
+
+          <div class="project-item">
+            <img src="img/icono_supervisores_test_mensa.png" alt="Test Mensa" class="project-icon" onclick="window.open('https://drive.google.com/file/d/1Bc7rwhJQ0XnmUIZF5U5zlDwAxvHoZag3/view?usp=sharing', '_blank')">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Content Section -->
     <div class="content-section">
       <div class="row">
@@ -462,6 +663,43 @@
               Experiencia
             </h2>
             <ul class="custom-list" id="experiencia"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- New sections row -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-card loading">
+            <h2 class="section-title">
+              <i class="fas fa-star"></i>
+              Otros Datos de Interés
+            </h2>
+            <ul class="custom-list">
+              <li class="list-item">
+                <strong>Miembro de MENSA España número: 994</strong> (<a href="https://www.mensa.es" target="_blank" style="color: var(--color-secondary);">www.mensa.es</a>) (asociación de superdotados)
+              </li>
+              <li class="list-item">
+                <strong>Cualidades positivas que aportar a la empresa:</strong> Profesionalidad, Tenacidad e Inteligencia.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="section-card loading">
+            <h2 class="section-title">
+              <i class="fas fa-cogs"></i>
+              Conocimientos Informáticos y Adicionales
+            </h2>
+            <div class="list-item">
+              <p><strong>Sistemas y Tecnologías:</strong> Ubuntu, Python, Apache, Nginx, Lighttpd, VPN Wireguard, OpenLDAP, Active Directory, SQL, Spoon (Pentaho), Servidores FTP, Proxy, Firewall, VLAN, Netbios, Nagios/Pandora</p>
+              
+              <p><strong>Hardware y Software:</strong> Montaje/reparación de PCs hard. y soft., Virtual DUB/AVI Demux, Photoshop, Corel Draw, Sistemas de Backup, Alsamixer</p>
+              
+              <p><strong>Streaming y Multimedia:</strong> Ffmpeg, Icecast, IceDark, Nginx RTMP Module, Gstreamer, Raspivid, Motion, RPi Cam Web Interface, Janus Gateway (WebRTC)</p>
+              
+              <p><strong>Electrónica:</strong> Soldadura, uso de Polímetro Digital</p>
+            </div>
           </div>
         </div>
       </div>
@@ -495,7 +733,7 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script>
     // Datos del currículum
     const data = {
@@ -504,7 +742,7 @@
       "resumen": "Programador, técnico de redes y técnico microinformático con amplia experiencia en desarrollo web, aplicaciones móviles y administración de sistemas.",
       "educacion": [
         "09/2008 - 09/2010 - Técnico Superior, de Desarrollo de Aplicaciones Informáticas (DAI).",  
-        "04/2025 - HOY - Técnico en sistemas microinformáticos/Operador de sistemas/Técnico de soporte informático - CEDECO",
+        "04/2025 - HOY - Técnico en sistemas microinformáticos/Operador de sistemas/Técnico de soporte informático - CEDECO: 1 – Instalación y configuración de sistemas operativos Instalación y actualización de sistemas operativos (80 h) +	Explotación de las funcionalidades del sistema microinformático (60 h) 2 – Mantenimiento del subsistema físico de sistemas informáticos: Mantenimiento e inventario del subsistema físico (90 h) + Monitorización y gestión de incidencias de los sistemas físicos (60 h) 3 – Mantenimiento del subsistema lógico de sistemas informáticos: Gestión y operativa del software de un sistema informático (90 h) + Monitorización y gestión de incidencias del software (60 h) 4 – Mantenimiento de la seguridad en sistemas informáticos: Monitorización de los accesos al sistema informático (90 h) + Copia de seguridad y restauración de la información (30 h)",
         "09/2023 - 10/2023 - Inteligencia Artificial, Big Data, Java orientado a 5G, usos y características del 5G (150h)",
         "05/2023 - Fundamentos de robótica (50h)",
         "06/2022 - Machine Learning aplicado usando Python (150h)",
